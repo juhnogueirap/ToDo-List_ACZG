@@ -38,17 +38,25 @@ public class Tarefa {
     }
 
 
-    public static enum Categoria {
-        ESTUDOS,
-        CASA,
-        TRABALHO,
-        EXERCÍCIOS;
+    public enum Categoria {
+        ESTUDOS(0),
+        CASA(1),
+        TRABALHO(2),
+        EXERCÍCIOS(3);
 
-        private Categoria() {
+        private final int valor;
+
+        Categoria(int valor) {
+            this.valor = valor;
         }
+
+        public int getValor() {
+            return this.valor;
+        }
+
     }
 
-    public static enum Status {
+    public enum Status {
         TODO,
         DOING,
         DONE;
