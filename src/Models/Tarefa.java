@@ -37,6 +37,7 @@ public class Tarefa {
         System.out.println("Status: " + String.valueOf(tarefa.status) + "\n");
     }
 
+
     public static enum Categoria {
         ESTUDOS,
         CASA,
