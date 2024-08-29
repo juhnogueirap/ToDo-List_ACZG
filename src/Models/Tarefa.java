@@ -1,16 +1,19 @@
 package Models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Tarefa {
     String nome;
     String descricao;
     Date dataTermino;
     int prioridade;
-    Categoria categoria;
-    Status status;
+    Enums.Categoria categoria;
+    Enums.Status status;
 
-    public Tarefa(String nome, String descricao, Date datatermino, int prioridade, Categoria categoria, Status status) {
+    public Tarefa(String nome, String descricao, Date datatermino, int prioridade, Enums.Categoria categoria, Enums.Status status) {
         this.nome = nome;
         this.descricao = descricao;
         this.dataTermino = datatermino;
@@ -28,6 +31,51 @@ public class Tarefa {
         this.status = null;
     }
 
+    public static Tarefa criarTarefa() {
+        try{
+            System.out.println("Informe o nome da tarefa: ");
+            String nomeTarefa = new Scanner(System.in).nextLine();
+
+            System.out.println("Informe uma descrição da tarefa: ");
+            String descricaoTarefa = new Scanner(System.in).nextLine();
+
+            System.out.println("Informe a data prevista para o término da tarefa no formato dd/mm/aaaa: ");
+            String data = new Scanner(System.in).nextLine();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date dataPrevista = formatter.parse(data);
+
+            System.out.println("Informe a prioridade da tarefa, de 1 a 5: ");
+            int prioridadeTarefa = new Scanner(System.in).nextInt();
+            if(prioridadeTarefa < 1 || prioridadeTarefa > 5){
+                System.out.println("Prioridade invalida! Escolha um número entre 1 e 5");
+            }
+
+            System.out.println("Informe o número correspondente à categoria da tarefa:\n 0 - Estudos \n 1 - Casa \n 2 - Trabalho \n 3 - Exercícios ");
+            int categoriaTarefa = new Scanner(System.in).nextInt();
+            Enums.Categoria categoria = Enums.Categoria.values()[categoriaTarefa];
+
+            System.out.println("Informe o número correspondente ao status da tarefa:\n 0 - ToDo \n 1 - Doing \n 2 - Done");
+            int statusTarefa = new Scanner(System.in).nextInt();
+            Enums.Status status = Enums.Status.values()[statusTarefa];
+
+            Tarefa tarefaCriada = new Tarefa(nomeTarefa, descricaoTarefa, dataPrevista, prioridadeTarefa, categoria, status);
+            return tarefaCriada;
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void adicionarTarefa(Tarefa tarefa, ToDoListManager nomeLista) {
+
+        nomeLista.tarefas.add(tarefa);
+        System.out.println("Tarefa adicionada com sucesso:\n");
+        nomeLista.imprimirLista();
+
+    }
+
     public void imprimirTarefa(Tarefa tarefa) {
         System.out.println("\nNome: " + tarefa.nome);
         System.out.println("Descricao: " + tarefa.descricao);
@@ -37,31 +85,4 @@ public class Tarefa {
         System.out.println("Status: " + String.valueOf(tarefa.status) + "\n");
     }
 
-
-    public enum Categoria {
-        ESTUDOS(0),
-        CASA(1),
-        TRABALHO(2),
-        EXERCÍCIOS(3);
-
-        private final int valor;
-
-        Categoria(int valor) {
-            this.valor = valor;
-        }
-
-        public int getValor() {
-            return this.valor;
-        }
-
-    }
-
-    public enum Status {
-        TODO,
-        DOING,
-        DONE;
-
-        private Status() {
-        }
-    }
 }
