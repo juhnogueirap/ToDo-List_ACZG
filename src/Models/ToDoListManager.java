@@ -1,6 +1,8 @@
 package Models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ToDoListManager {
 
@@ -49,6 +51,10 @@ public class ToDoListManager {
             }
 
         }
+    }
+
+    public void removerTarefa(ArrayList<Tarefa> listaTarefas, String nomeFornecido) {
+        listaTarefas.removeIf(tarefinha -> Objects.equals(tarefinha.nome, nomeFornecido));
     }
 
 }

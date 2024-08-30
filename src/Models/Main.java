@@ -26,8 +26,9 @@ public class Main {
             case 3:
                 System.out.println("Insira o nome da tarefa que deseja remover: ");
                 String nomeTarefa = ler.next();
-
-
+                listaTarefas.removerTarefa(listaTarefas.tarefas, nomeTarefa);
+                selecionarOpcoes(tarefas, listaTarefas);
+                break;
 
             default:
                 System.out.println("Opção inválida, tente novamente!");
@@ -61,12 +62,14 @@ public class Main {
                 int categoriaTarefa = ler.nextInt();
                 Enums.Categoria categoria = Enums.Categoria.values()[categoriaTarefa];
                 listaTarefas.imprimirListaCategoria(categoria, listaTarefas.tarefas);
+                selecionarOpcoes(tarefas, listaTarefas);
                 break;
 
             case 3:
                 System.out.println("Tarefas com que grau de prioridade deseja visualizar? Insira um número entre 1 e 5: ");
                 int prioridadeTarefa = ler.nextInt();
                 listaTarefas.imprimirListaPrioridade(prioridadeTarefa, listaTarefas.tarefas);
+                selecionarOpcoes(tarefas, listaTarefas);
                 break;
 
             case 4:
@@ -74,6 +77,7 @@ public class Main {
                 int statusTarefa = ler.nextInt();
                 Enums.Status status = Enums.Status.values()[statusTarefa];
                 listaTarefas.imprimirListaStatus(status, listaTarefas.tarefas);
+                selecionarOpcoes(tarefas, listaTarefas);
                 break;
 
         }
