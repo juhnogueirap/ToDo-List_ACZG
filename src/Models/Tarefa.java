@@ -4,8 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.Collections;
 
-public class Tarefa {
+public class Tarefa implements Comparable<Tarefa> {
     String nome;
     String descricao;
     Date dataTermino;
@@ -22,13 +23,12 @@ public class Tarefa {
         this.status = status;
     }
 
-    public Tarefa() {
-        this.nome = "Default";
-        this.descricao = "Tarefa default";
-        this.dataTermino = null;
-        this.prioridade = 0;
-        this.categoria = null;
-        this.status = null;
+    public int getPrioridade() {
+        return prioridade;
+    }
+
+    public int compareTo(Tarefa outraTarefa) {
+        return Integer.compare(outraTarefa.getPrioridade(), this.prioridade);
     }
 
     public static Tarefa criarTarefa() {
@@ -71,6 +71,7 @@ public class Tarefa {
     public static void adicionarTarefa(Tarefa tarefa, ToDoListManager nomeLista) {
 
         nomeLista.tarefas.add(tarefa);
+        Collections.sort(nomeLista.tarefas);
         System.out.println("Tarefa adicionada com sucesso:\n");
         imprimirTarefa(tarefa);
 
