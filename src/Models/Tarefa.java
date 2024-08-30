@@ -72,11 +72,11 @@ public class Tarefa {
 
         nomeLista.tarefas.add(tarefa);
         System.out.println("Tarefa adicionada com sucesso:\n");
-        nomeLista.imprimirLista();
+        imprimirTarefa(tarefa);
 
     }
 
-    public void imprimirTarefa(Tarefa tarefa) {
+    public static void imprimirTarefa(Tarefa tarefa) {
         System.out.println("\nNome: " + tarefa.nome);
         System.out.println("Descricao: " + tarefa.descricao);
         System.out.println("Data de termino: " + String.valueOf(tarefa.dataTermino));
