@@ -15,7 +15,7 @@ public class ToDoListManager {
     public void imprimirLista() {
 
         for (Tarefa tarefa : tarefas) {
-            tarefa.imprimirTarefa(tarefa);
+            Tarefa.imprimirTarefa(tarefa);
         }
 
     }
@@ -23,9 +23,8 @@ public class ToDoListManager {
     public void imprimirListaCategoria(Enums.Categoria categoria, ArrayList<Tarefa> listaTarefas) {
 
         for (Tarefa tarefinha : listaTarefas) {
-            System.out.println(tarefinha.categoria);
             if (tarefinha.categoria == categoria) {
-                tarefinha.imprimirTarefa(tarefinha);
+                Tarefa.imprimirTarefa(tarefinha);
             }
 
         }
@@ -34,9 +33,8 @@ public class ToDoListManager {
     public void imprimirListaPrioridade(int prioridade, ArrayList<Tarefa> listaTarefas) {
 
         for (Tarefa tarefinha : listaTarefas) {
-            System.out.println(tarefinha.prioridade + "\n");
             if (tarefinha.prioridade == prioridade) {
-                tarefinha.imprimirTarefa(tarefinha);
+                Tarefa.imprimirTarefa(tarefinha);
             }
 
         }
@@ -45,9 +43,8 @@ public class ToDoListManager {
     public void imprimirListaStatus(Enums.Status status, ArrayList<Tarefa> listaTarefas) {
 
         for (Tarefa tarefinha : listaTarefas) {
-            System.out.println(tarefinha.status);
             if (tarefinha.status == status) {
-                tarefinha.imprimirTarefa(tarefinha);
+                Tarefa.imprimirTarefa(tarefinha);
             }
 
         }
