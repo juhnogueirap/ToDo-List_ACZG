@@ -1,20 +1,143 @@
 <!doctype html>
-
-<html lang = "pt-br">
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
-        <title> ToDO-List </title>
+        <title>ToDo-List</title>
     </head>
 
+    <body class="p-3 m-0 border-0 bd-example m-0 border-0">
 
-    <body>
-    <h1>ToDo-List</h1>
+        <div class = 'row row-relative justify-content-md-center custom-mb' >
+            <div class = 'image-container'>
+                <img src = "images/postIt.png" class = "custom-img">
+                <div class="overlay-text">ToDo-List</div>
+            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="scripts.js"></script>
+
+        </div>
+
+        <div class='row justify-content-md-center custom-gap'>
+
+            <div class="modal" id = "modalCriarTarefa" tabindex="-1">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Criar Tarefa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formCriarTarefa">
+
+                                <div class="mb-3">
+                                    <label for="tituloTarefa" class="form-label">Nome da tarefa</label>
+                                    <input type="text" class="form-control" id="tituloTarefa" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="descricaoTarefa" class="form-label">Descrição da tarefa </label>
+                                    <textarea class="form-control" id="descricaoTarefa" rows="3" required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="dataPrazo" class="form-label">Prazo para término da tarefa</label>
+                                    <input type="date" class="form-control" id="dataPrazo" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="categoriaTarefa" class="form-label">Categoria</label>
+                                    <select class="form-select" id="categoriaTarefa" required>
+                                        <option value="" selected disabled>Escolha uma categoria</option>
+                                        <option value="Estudos">Estudos</option>
+                                        <option value="Casa">Casa</option>
+                                        <option value="Trabalho">Trabalho</option>
+                                        <option value="Exercícios">Exercícios</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="prioridadeTarefa" class="form-label">Prioridade</label>
+                                    <input type="range" class="form-range" id="prioridadeTarefa" min="1" max="5" step="1" value="3" oninput="atualizarValorPrioridade(this.value)">
+                                    <div class="mt-2">
+                                        <span id="valorPrioridade">3</span> de 5
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <div class="btn-group d-flex" role="group" aria-label="Status da Tarefa">
+                                        <input type="radio" class="btn-check" name="status" id="statusTodo" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="statusTodo">To Do</label>
+
+                                        <input type="radio" class="btn-check" name="status" id="statusDoing" autocomplete="off">
+                                        <label class="btn btn-outline-warning" for="statusDoing">Doing</label>
+
+                                        <input type="radio" class="btn-check" name="status" id="statusDone" autocomplete="off">
+                                        <label class="btn btn-outline-success" for="statusDone">Done</label>
+                                    </div>
+                                </div>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-auto'>
+
+                <div class="card" style="width: 18rem;">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                    <div class="card-body">
+                        <h5 class="card-title">Criar nova tarefa</h5>
+                        <p class="card-text">Crie tarefas, descreva-as, determine prazos e muito mais </p>
+                        <a href="#" id = "criarButton" class="btn btn-primary">Criar</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class='col-auto'>
+
+                <div class="card" style="width: 18rem;">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                    <div class="card-body">
+                        <h5 class="card-title">Visualizar Tarefas</h5>
+                        <p class="card-text">Crie tarefas, descreva-as, determine prazos e muito mais </p>
+                        <a href="#" id = "visualizarButton" class="btn btn-primary">Visualizar</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class='col-auto'>
+
+                <div class="card" style="width: 18rem;">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                    <div class="card-body">
+                        <h5 class="card-title">Editar/Remover tarefas</h5>
+                        <p class="card-text">Crie tarefas, descreva-as, determine prazos e muito mais </p>
+                        <a href="#" id = "editarButton" class="btn btn-primary">Editar ou remover </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+            <script src="scripts.js"></script>
     </body>
 </html>
+
+
+

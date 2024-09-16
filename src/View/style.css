@@ -1,0 +1,72 @@
+body, html {
+    margin-left: 0;
+    padding: 0;
+    height: 100vw;
+    width:100vw;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.custom-mb {
+    margin-bottom: 6rem;
+    margin-top: -20px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.row-relative {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+    height: 300px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+.custom-gap {
+
+    column-gap: 8rem;
+}
+
+.image-container {
+    position: relative;
+    width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding-left: 0px;
+
+}
+
+.custom-img {
+    width: 100vw;
+    height: auto;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 120px;
+    font-weight: bold;
+    text-shadow: 8px 8px 16px rgba(0, 0, 0, 2.0);
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.modal {
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+
