@@ -70,3 +70,6 @@ body {
     outline: 0;
 }
 
+.modal-backdrop {
+    z-index: 1040;
+}
