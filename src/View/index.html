@@ -107,6 +107,9 @@
                                     <!-- Filtro por Prazo -->
                                     <div class="col-md-3">
                                         <label for="filtroPrazo" class="form-label">Prazo</label>
+                                        <input type="text" class="form-control" id="filtroPrazo" placeholder="Sem Filtro" onfocus="(this.type='date')" onblur="verificarCampoVazio(this)">
+
+
                                     </div>
 
                                     <!-- Filtro por Categoria -->
@@ -162,6 +165,96 @@
                     </div>
                 </div>
             </div>
+
+
+
+            <!-- Modal para Seleção da Tarefa -->
+            <div class="modal fade" id="modalSelecionarTarefa" tabindex="-1" aria-labelledby="modalSelecionarTarefaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalSelecionarTarefaLabel">Selecionar Tarefa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Lista de Tarefas -->
+                            <div id="listaTarefas">
+                                <!-- Tarefas serão carregadas aqui -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para Editar/Remover Tarefa -->
+            <div class="modal fade" id="modalEditarRemoverTarefa" tabindex="-1" aria-labelledby="modalEditarRemoverTarefaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalEditarRemoverTarefaLabel">Editar/Remover Tarefa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Formulário de Edição -->
+                            <form id="formEditarTarefa">
+                                <div class="mb-3">
+                                    <label for="editarTituloTarefa" class="form-label">Nome da Tarefa</label>
+                                    <input type="text" class="form-control" id="editarTituloTarefa" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarDescricaoTarefa" class="form-label">Descrição da Tarefa</label>
+                                    <textarea class="form-control" id="editarDescricaoTarefa" rows="3" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarDataPrazo" class="form-label">Prazo</label>
+                                    <input type="date" class="form-control" id="editarDataPrazo" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarCategoriaTarefa" class="form-label">Categoria</label>
+                                    <select class="form-select" id="editarCategoriaTarefa" required>
+                                        <option value="" selected disabled>Escolha uma categoria</option>
+                                        <option value="Estudos">Estudos</option>
+                                        <option value="Casa">Casa</option>
+                                        <option value="Trabalho">Trabalho</option>
+                                        <option value="Exercícios">Exercícios</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarPrioridadeTarefa" class="form-label">Prioridade</label>
+                                    <input type="range" class="form-range" id="editarPrioridadeTarefa" min="1" max="5" step="1" value="3" oninput="document.getElementById('valorPrioridadeEditar').textContent = this.value">
+                                    <div class="mt-2">
+                                        <span id="valorPrioridadeEditar">3</span> de 5
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <div class="btn-group d-flex" role="group" aria-label="Status da Tarefa">
+                                        <input type="radio" class="btn-check" name="statusEditar" id="statusEditarTodo" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="statusEditarTodo">To Do</label>
+
+                                        <input type="radio" class="btn-check" name="statusEditar" id="statusEditarDoing" autocomplete="off">
+                                        <label class="btn btn-outline-warning" for="statusEditarDoing">Doing</label>
+
+                                        <input type="radio" class="btn-check" name="statusEditar" id="statusEditarDone" autocomplete="off">
+                                        <label class="btn btn-outline-success" for="statusEditarDone">Done</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary" id="salvarEdicaoButton">Salvar</button>
+                            <button type="button" class="btn btn-danger" id="removerTarefaButton">Remover</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
 
 

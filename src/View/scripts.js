@@ -7,7 +7,8 @@ document.getElementById("visualizarButton").onclick = function () {
     modal.show(modal);
 };
 document.getElementById("editarButton").onclick = function () {
-    alert('Você clicou no botão');
+    const modal = new bootstrap.Modal(document.getElementById('modalSelecionarTarefa'));
+    modal.show(modal);
 };
 
 function atualizarValorPrioridade(valor) {
