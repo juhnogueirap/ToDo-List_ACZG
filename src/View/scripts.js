@@ -3,7 +3,8 @@ document.getElementById("criarButton").onclick = function () {
     modal.show(modal);
 };
 document.getElementById("visualizarButton").onclick = function () {
-    alert('Você clicou no botão');
+    const modal = new bootstrap.Modal(document.getElementById('modalVisualizarTarefas'));
+    modal.show(modal);
 };
 document.getElementById("editarButton").onclick = function () {
     alert('Você clicou no botão');
@@ -11,6 +12,16 @@ document.getElementById("editarButton").onclick = function () {
 
 function atualizarValorPrioridade(valor) {
     document.getElementById('valorPrioridade').textContent = valor;
+}
+
+function atualizarValorFiltroPrioridade(valor) {
+    document.getElementById('valorFiltroPrioridade').textContent = valor;
+}
+function verificarCampoVazio(input) {
+    if (input.value === '') {
+        input.type = 'text';
+        input.placeholder = 'Sem Filtro';
+    }
 }
 
 
