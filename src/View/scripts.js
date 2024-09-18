@@ -9,5 +9,8 @@ document.getElementById("editarButton").onclick = function () {
     alert('Você clicou no botão');
 };
 
+function atualizarValorPrioridade(valor) {
+    document.getElementById('valorPrioridade').textContent = valor;
+}
 
 
